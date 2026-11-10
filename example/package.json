@@ -22,7 +22,7 @@
     "@babel/core": "^7.12.9",
     "@babel/plugin-proposal-export-namespace-from": "^7.18.9",
     "babel-loader": "^9.2.1",
-    "babel-plugin-module-resolver": "^5.0.2",
+    "babel-plugin-module-resolver": "4.1.0",
     "webpack": "^5.112.2",
     "webpack-cli": "^6.0.1",
     "webpack-dev-server": "^5.2.6",
@@ -51,7 +51,8 @@
     "image-size": "file:../scripts/image-size-compat",
     "uuid": "file:../scripts/uuid-compat",
     "json5": "^2.2.3",
-    "deepmerge": "file:../scripts/deepmerge-safe"
+    "deepmerge": "file:../scripts/deepmerge-safe",
+    "fast-xml-parser": "^5.7.0"
   },
   "engines": {
     "node": ">=22.0.0"

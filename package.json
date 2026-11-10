@@ -87,7 +87,9 @@
     "**/@commitlint/is-ignored/semver": "^7.5.2",
     "image-size": "file:./scripts/image-size-compat",
     "@babel/runtime": "^7.26.10",
-    "deepmerge": "file:./scripts/deepmerge-safe"
+    "deepmerge": "file:./scripts/deepmerge-safe",
+    "undici": "^6.29.1",
+    "basic-ftp": "^6.2.1"
   },
   "peerDependencies": {
     "react": "*",
