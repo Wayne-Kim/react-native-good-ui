@@ -75,7 +75,17 @@
     "typescript": "^4.5.2"
   },
   "resolutions": {
-    "@types/react": "17.0.21"
+    "@types/react": "17.0.21",
+    "@babel/core": "^7.29.6",
+    "lodash": "^4.18.1",
+    "on-headers": "^1.1.0",
+    "react-devtools-core": "^4.28.4",
+    "shell-quote": "^1.9.0",
+    "loader-utils": "^2.0.4",
+    "browserslist": "^4.28.7",
+    "@commitlint/is-ignored/semver": "^7.5.2",
+    "@release-it/conventional-changelog/semver": "^7.5.2",
+    "release-it/semver": "^7.5.2"
   },
   "peerDependencies": {
     "react": "*",
