@@ -1,25 +1,37 @@
 const path = require('path');
-const createExpoWebpackConfigAsync = require('@expo/webpack-config');
-const { resolver } = require('./metro.config');
-
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const pak = require('../package.json');
 const root = path.resolve(__dirname, '..');
-const node_modules = path.join(__dirname, 'node_modules');
+const modules = path.join(__dirname, 'node_modules');
 
-module.exports = async function (env, argv) {
-  const config = await createExpoWebpackConfigAsync(env, argv);
-
-  config.module.rules.push({
-    test: /\.(js|jsx|ts|tsx)$/,
-    include: path.resolve(root, 'src'),
-    use: 'babel-loader',
-  });
-
-  // We need to make sure that only one version is loaded for peerDependencies
-  // So we alias them to the versions in example's node_modules
-  Object.assign(config.resolve.alias, {
-    ...resolver.extraNodeModules,
-    'react-native-web': path.join(node_modules, 'react-native-web'),
-  });
-
-  return config;
+module.exports = {
+  entry: './web/index.js',
+  output: {
+    path: path.join(__dirname, 'web-build'),
+    filename: '[name].[contenthash].js',
+    clean: true,
+  },
+  resolve: {
+    extensions: ['.web.tsx', '.web.ts', '.web.js', '.tsx', '.ts', '.js', '.json'],
+    alias: {
+      'react-native$': path.join(modules, 'react-native-web'),
+      'react-native-web': path.join(modules, 'react-native-web'),
+      'react': path.join(modules, 'react'),
+      'react-dom': path.join(modules, 'react-dom'),
+      'react-native-reanimated': path.join(modules, 'react-native-reanimated'),
+      [pak.name]: path.join(root, pak.source),
+    },
+  },
+  module: {
+    rules: [
+      {
+        test: /\.[jt]sx?$/,
+        exclude: /node_modules\/(?!react-native-reanimated\/)/,
+        use: { loader: 'babel-loader', options: { cwd: __dirname } },
+      },
+      { test: /\.(png|jpe?g|gif|svg|ttf|woff2?)$/, type: 'asset/resource' },
+    ],
+  },
+  plugins: [new HtmlWebpackPlugin({ template: './web/index.html' })],
+  devServer: { host: '127.0.0.1', port: 8080, historyApiFallback: true },
 };

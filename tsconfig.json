@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "baseUrl": "./",
+    "types": ["jest", "react", "react-native", "node"],
     "paths": {
       "react-native-good-ui": ["./src/index"]
     },

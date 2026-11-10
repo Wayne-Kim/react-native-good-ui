@@ -228,3 +228,11 @@ MIT
 ---
 
 Made with [create-react-native-library](https://github.com/callstack/react-native-builder-bob)
+
+## Development security updates
+
+Use Node.js 22 or newer. In `example`, run `yarn web` for the local Webpack 5 server or `yarn web:build` for a production web build. The server binds to loopback. The legacy OpenSSL flag is no longer needed.
+
+Security compatibility packages in `scripts/` preserve the old Metro image-size and Expo UUID entry points while delegating to maintained implementations. `ip` resolves to `@webpod/ip`. `deepmerge-safe` vendors the MIT-licensed deepmerge 4.3.1 implementation with prototype-control keys rejected in both inputs; it is a local security patch, not an upstream release. Revisit the fork when an upstream fix for GHSA-gcqx-w48m-w2h4 becomes available.
+
+After installing root and example dependencies, run `node --test scripts/tests/*.cjs`, `yarn typecheck`, `yarn prepack`, and `yarn --cwd example web:build`. The security tests cover prototype poisoning, malformed ICNS, IP loopback aliases, and legacy UUID/image APIs.
